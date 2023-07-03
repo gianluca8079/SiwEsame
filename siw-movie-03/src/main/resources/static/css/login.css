@@ -28,7 +28,7 @@ h1{
 }
 
 a { 
-    color: rgb(98, 192, 144);
+    color:orange;
     text-decoration: none;
     font-size: large;
     
@@ -39,6 +39,7 @@ a {
 
 a:hover { 
 	text-decoration: underline; 
+	color:  rgb(98, 192, 144);;
 }
 
 header {
@@ -73,15 +74,17 @@ header a {
 	  position: fixed;
 	  top: 50%;
       left: 50%;
-	  height: 100px;
+	  height: 150px;
 	  transform: translate(-50%, -50%);
 	  border-radius: 10px;
 
 }
 .input{
+	display: flex;
+flex-direction: column;
 	position: fixed;
 	  top: 50%;
-      left: 40%;
+      left: 50%;
       transform: translate(-50%, -50%);
       color: orange;
 
@@ -97,30 +100,18 @@ header a {
 
 }
 
-.riquadro3{
-	  display: flex;
+.riquadro2{
+	display: flex;
 	  justify-content: center;
 	  border: 3px solid orange;
-	  width: 400px;
+	  width: 470px;
 	  position: fixed;
 	  top: 50%;
       left: 50%;
-	  height: 300px;
+	  height: 200px;
 	  transform: translate(-50%, -50%);
 	  border-radius: 10px;
-
 }
-
-.submit3{
-	position: fixed;
-	top: 90%;
-    left: 82%;
-    transform: translate(-50%, -50%);
-
-
-
-}
-
 
 
 

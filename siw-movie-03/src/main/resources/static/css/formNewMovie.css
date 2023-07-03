@@ -69,11 +69,11 @@ header a {
 	  display: flex;
 	  justify-content: center;
 	  border: 3px solid orange;
-	  width: 400px;
+	  width: 350px;
 	  position: fixed;
 	  top: 50%;
       left: 50%;
-	  height: 100px;
+	  height: 140px;
 	  transform: translate(-50%, -50%);
 	  border-radius: 10px;
 
@@ -89,35 +89,25 @@ header a {
 
 .submit{
 	position: fixed;
-	top: 50%;
-    left: 72%;
+	top: 110%;
+    left: 112%;
     transform: translate(-50%, -50%);
 
 
 
 }
 
-.riquadro3{
+.riquadro2{
 	  display: flex;
 	  justify-content: center;
 	  border: 3px solid orange;
-	  width: 400px;
+	  width: 350px;
 	  position: fixed;
 	  top: 50%;
       left: 50%;
-	  height: 300px;
+	  height: 180px;
 	  transform: translate(-50%, -50%);
 	  border-radius: 10px;
-
-}
-
-.submit3{
-	position: fixed;
-	top: 90%;
-    left: 82%;
-    transform: translate(-50%, -50%);
-
-
 
 }
 
