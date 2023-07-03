@@ -26,6 +26,7 @@
 			<a th:href="@{'/artist' + '/' + ${artist.id}}"
 				th:text="${artist.name} + ' ' + ${artist.surname}">Dino Risi</a>
 				<span sec:authorize="hasAnyAuthority('ADMIN')">
+			<a class="aggiorna"th:href="@{'/admin/formUpdateArtist' + '/' + ${artist.id}}">Aggiorna</a>
 			<a class="cancella" th:href="@{'/admin/deleteArtist/' + ${artist.id}}">Elimina</a>
 			</span>
 		</li>

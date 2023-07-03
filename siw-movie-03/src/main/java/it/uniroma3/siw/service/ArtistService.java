@@ -37,6 +37,11 @@ public class ArtistService {
 	}
 	
 	@Transactional
+	public Artist saveArtist(Artist artist) {
+		return this.artistRepository.save(artist);
+	}
+	
+	@Transactional
 	public List<Artist> findActorsNotInMovie(Long movieId){
 		List<Artist> actorsToAdd = new ArrayList<>();
 
@@ -65,5 +70,29 @@ public class ArtistService {
 	public void delete(Long idArtist) {
 		Artist artist= this.artistRepository.findById(idArtist).get();
 		this.artistRepository.delete(artist);
+	}
+
+	public Artist setNameToArtist(Long artistId, String name) {
+		Artist res = null;
+		Artist artist = this.findArtistById(artistId);
+		if(artist != null) {
+			res = artist;
+		artist.setName(name);
+		this.saveArtist(artist);
+		}
+		return res;
+
+		
+	}
+
+	public Artist setSurnameToArtist(Long artistId, String surname) {
+		Artist res = null;
+		Artist artist = this.findArtistById(artistId);
+		if(artist != null) {
+			res = artist;
+		artist.setSurname(surname);
+		this.saveArtist(artist);
+		}
+		return res;
 	}
 }

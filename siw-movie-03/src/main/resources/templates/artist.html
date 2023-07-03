@@ -37,10 +37,20 @@
     
       
 
-    <span class="sottotitolo">L'artista ha diretto o ha recitato in:</span>
+    <span class="sottotitolo">L'artista ha diretto:</span>
     
     <ul>
-		<li th:each="movie : ${movies}">
+		<li th:each="movie : ${directedMovies}">
+			<a th:href="@{'/movie' + '/' + ${movie.id}}"
+				th:text="${movie.title}">Titanic</a>
+		</li>
+	</ul>
+	
+	    <span class="sottotitolo">L'artista ha recitato in:</span>
+
+	
+	<ul>
+		<li th:each="movie : ${starredMovies}">
 			<a th:href="@{'/movie' + '/' + ${movie.id}}"
 				th:text="${movie.title}">Titanic</a>
 		</li>

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import it.uniroma3.siw.model.Artist;
+import it.uniroma3.siw.model.Movie;
 import it.uniroma3.siw.repository.ArtistRepository;
 import it.uniroma3.siw.service.ArtistService;
 import it.uniroma3.siw.service.MovieService;
@@ -61,8 +62,11 @@ public class ArtistController {
 
 	@GetMapping("/artist/{id}")
 	public String getArtist(@PathVariable("id") Long id, Model model) {
+		Artist artist = this.artistService.findArtistById(id);
 		model.addAttribute("artist", this.artistRepository.findById(id).get());
-		model.addAttribute("movies", this.movieService.findMoviesByArtist(id));
+		model.addAttribute("starredMovies", artist.getStarredMovies());
+		model.addAttribute("directedMovies", artist.getDirectedMovies());
+		
 		return "artist.html";
 	}
 
@@ -77,6 +81,51 @@ public class ArtistController {
 		model.addAttribute("artists", this.artistService.findAllArtist());
 		return "admin/manageArtists.html";
 	}
+	@GetMapping(value="/admin/formUpdateArtist/{id}")
+	public String formUpdateArtist(@PathVariable("id") Long id, Model model) {
+		Artist artist = artistService.findArtistById(id);
+		if( artist != null) {
+		model.addAttribute("artist",artist);
+		}
+		else {
+			return "movieError.html";
+		}
+		return "admin/formUpdateArtist.html";
+	}
+	
+	@PostMapping(value="/admin/modificaCognome/{artistId}")
+	public String modificaCognome(@PathVariable("artistId") Long artistId,@RequestParam String surname, Model model) {
+		Artist artist = this.artistService.findArtistById(artistId);
+		
+		if(artist != null && surname != null) {
+			this.artistService.setSurnameToArtist(artistId,surname);
+			model.addAttribute("artist", artist);
+			return "admin/formUpdateArtist.html";
+
+
+		}
+		else {
+		return "movieError.html";
+		}
+	}
+		
+		@PostMapping(value="/admin/modificaNome/{artistId}")
+		public String modificaNome(@PathVariable("artistId") Long artistId,@RequestParam String name, Model model) {
+			Artist artist = this.artistService.findArtistById(artistId);
+			
+			if(artist != null && name != null) {
+				this.artistService.setNameToArtist(artistId,name);
+				model.addAttribute("artist", artist);
+				return "admin/formUpdateArtist.html";
+
+
+			}
+			else {
+			return "movieError.html";
+			}
+		}
+	
+	
 	
 	@Transactional
 	@GetMapping("/admin/deleteArtist/{idArtist}")
