@@ -111,6 +111,24 @@ public class Artist {
 	public void setDirectorOf(List<Movie> directedMovies) {
 		this.directedMovies = directedMovies;
 	}
+	
+	
+
+	public Set<Movie> getStarredMovies() {
+		return starredMovies;
+	}
+
+	public void setStarredMovies(Set<Movie> starredMovies) {
+		this.starredMovies = starredMovies;
+	}
+
+	public List<Movie> getDirectedMovies() {
+		return directedMovies;
+	}
+
+	public void setDirectedMovies(List<Movie> directedMovies) {
+		this.directedMovies = directedMovies;
+	}
 
 	@Override
 	public int hashCode() {

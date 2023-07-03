@@ -1,5 +1,7 @@
 package it.uniroma3.siw.service;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +40,15 @@ public class RecensioneService {
 	public void delete(Long idR) {
 		Recensione recensione= this.findRecensioneById(idR);
 		this.recensioneRepository.delete(recensione);		
+	}
+	
+	@Transactional
+	public void removeMovieAssociationFromReview(Movie movie) {
+		List<Recensione> recensioni= this.recensioneRepository.findAllByFilmRecensito(movie);
+		for(Recensione recensione:recensioni) {
+			recensione.setFilmRecensito(null);
+			this.recensioneRepository.delete(recensione);
+		}
 	}
 	
 

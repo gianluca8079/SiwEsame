@@ -25,6 +25,7 @@
 		<li th:each="artist : ${artists}">
 			<a th:href="@{'/artist' + '/' + ${artist.id}}"
 				th:text="${artist.name} + ' ' + ${artist.surname}">Dino Risi</a>
+				
 		</li>
 	</ul>
 

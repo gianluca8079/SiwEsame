@@ -2,6 +2,8 @@ package it.uniroma3.siw.controller;
 
 import java.io.IOException;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -68,5 +70,27 @@ public class ArtistController {
 	public String getArtists(Model model) {
 		model.addAttribute("artists", this.artistRepository.findAll());
 		return "artists.html";
+	}
+	
+	@GetMapping(value="/admin/manageArtists")
+	public String manageArtists(Model model) {
+		model.addAttribute("artists", this.artistService.findAllArtist());
+		return "admin/manageArtists.html";
+	}
+	
+	@Transactional
+	@GetMapping("/admin/deleteArtist/{idArtist}")
+	public String deleteArtist(@PathVariable ("idArtist") Long idArtist, Model model) {
+		Artist artist=this.artistService.findArtistById(idArtist);
+		if(artist==null)
+			return "artistError.html";
+		else {
+			this.movieService.removeArtistFromAllMovies(idArtist); 
+			this.artistService.removeMoviesArtistDid(idArtist);
+			this.artistService.delete(idArtist);
+			FileUploadUtil.deleteDirArt(artist.getSurname());
+			model.addAttribute("artists", this.artistService.findAllArtist());
+			return "admin/manageArtists.html";
+		}
 	}
 }

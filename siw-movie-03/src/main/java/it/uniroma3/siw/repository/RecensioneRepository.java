@@ -1,9 +1,12 @@
 package it.uniroma3.siw.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
+import it.uniroma3.siw.model.Movie;
 import it.uniroma3.siw.model.Recensione;
 
 public interface RecensioneRepository extends CrudRepository<Recensione, Long> {
@@ -16,8 +19,11 @@ public interface RecensioneRepository extends CrudRepository<Recensione, Long> {
 		
 	
 	public boolean existsByTitleAndUtente(String title, String utente);	
-
 	
+	
+
+	public List<Recensione> findAllByFilmRecensito(Movie movie);
+
 
 
 }

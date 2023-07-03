@@ -2,7 +2,7 @@
 <html>
 
 <head>
-	<title>Film</title>
+	<title>Artisti</title>
 	<link rel="stylesheet" href="/css/stile.css" />
 </head>
 
@@ -16,22 +16,21 @@
 			<a href="/login">Login</a>
 		</div>
 	</header>
-
 	<span class="Logo"><span class="link"><a href="/"><img src="/images/logo-siw.png" width="100%"/></a></span></span>
-	<h1>Film</h1>
-	<div th:if="${movies.isEmpty()}">Non ci sono film nel sistema</div>
-	<ul>
-		<li th:each="movie : ${movies}">
-			<span th:text="${movie.title} + ' (' + ${movie.year} + ')'">Up! (2000)</span>
-			<a th:href="@{'/admin/formUpdateMovie' + '/' + ${movie.id}}">Aggiorna</a>
-			<a th:href="@{'/admin/deleteMovie' + '/' + ${movie.id}}">Cancella</a>
-
+	<h1>Artisti</h1>
+	
+	
+	<div th:if="${artists==null || artists.isEmpty()}">Non ci sono artisti nel sistema</div>
+	<ul class="colonne">
+		<li th:each="artist : ${artists}">
+			<a th:href="@{'/artist' + '/' + ${artist.id}}"
+				th:text="${artist.name} + ' ' + ${artist.surname}">Dino Risi</a>
+				<span sec:authorize="hasAnyAuthority('ADMIN')">
+			<a class="cancella" th:href="@{'/admin/deleteArtist/' + ${artist.id}}">Elimina</a>
+			</span>
 		</li>
 	</ul>
-	
-	<div>
-		<a th:href="@{'/admin/indexMovie/'}"><button type="button">Fine</button></a>
-	</div>
+
 </body>
 
 </html>

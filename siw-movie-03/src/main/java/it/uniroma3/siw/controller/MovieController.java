@@ -3,8 +3,10 @@ package it.uniroma3.siw.controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 
+import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,8 +25,8 @@ import it.uniroma3.siw.model.Movie;
 import it.uniroma3.siw.model.Recensione;
 import it.uniroma3.siw.model.User;
 import it.uniroma3.siw.service.ArtistService;
-import it.uniroma3.siw.service.CredentialsService;
 import it.uniroma3.siw.service.MovieService;
+import it.uniroma3.siw.service.RecensioneService;
 import it.uniroma3.siw.service.UserService;
 
 @Controller
@@ -45,6 +47,10 @@ public class MovieController {
 
 	@Autowired
 	private ArtistService artistService;
+
+	
+	@Autowired
+	private RecensioneService recensioneService;
 	
 
 	@GetMapping(value="/admin/formNewMovie")
@@ -109,6 +115,40 @@ public class MovieController {
 		}
 	}
 	
+	@PostMapping(value="/admin/modificaTitolo/{movieId}")
+	public String modificaTitolo(@PathVariable("movieId") Long movieId,@RequestParam String title, Model model) {
+		Movie movie = this.movieService.findMovieById(movieId);
+		
+		if(movie != null && title != null) {
+			this.movieService.setTitleToMovie(movieId,title);
+			model.addAttribute("movie", movie);
+			return "admin/formUpdateMovie.html";
+
+
+		}
+		else {
+		return "movieError.html";
+		}
+		
+		
+	}
+	@PostMapping(value="/admin/modificaAnno/{movieId}")
+	public String modificaAnno(@PathVariable("movieId") Long movieId,@RequestParam int year, Model model) {
+		Movie movie = this.movieService.findMovieById(movieId);
+		
+		if(movie != null) {
+			this.movieService.setAnnoToMovie(movieId,year);
+			model.addAttribute("movie", movie);
+			return "admin/formUpdateMovie.html";
+
+
+		}
+		else {
+		return "movieError.html";
+		}
+		
+		
+	}
 	
 	
 	
@@ -235,16 +275,33 @@ public class MovieController {
 		
 		if(movie !=  null) {
 			
-		List<Artist> actorsToAdd = artistService.findActorsNotInMovie(actorId);
+		List<Artist> actorsToAdd = artistService.findActorsNotInMovie(movieId);
 		
 		model.addAttribute("movie", movie);
-		model.addAttribute("actorsToAdd", actorsToAdd);
-
+		if(movie.getActors().isEmpty())
+			model.addAttribute("actorsToAdd", this.movieService.findAllMovies());
+			else
+			model.addAttribute("actorsToAdd", actorsToAdd);
 		return "admin/actorsToAdd.html";
 	}
 		else {
 			return "movieError.html";
 		}
+	}
+	
+	@Transactional
+	@GetMapping("/admin/deleteMovie/{idMovie}")
+	public String deleteMovie(@PathVariable("idMovie") Long idMovie, Model model) {
+		Movie movie=this.movieService.findMovieById(idMovie);
+		if(movie==null)
+			return "movieError.html";
+		this.artistService.removeMoviesFromActor(movie);
+		this.movieService.removeActorsFromMovie(idMovie);
+		this.recensioneService.removeMovieAssociationFromReview(movie);
+		FileUploadUtil.deleteDir(movie.getTitle());
+		this.movieService.delete(idMovie);
+		model.addAttribute("movies", this.movieService.findAllMovies());
+		return "admin/manageMovies.html";
 	}
 	
 	@GetMapping(value="/hasNotRecensione/{userId}/{movieId}")

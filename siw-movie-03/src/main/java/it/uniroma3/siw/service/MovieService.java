@@ -71,6 +71,32 @@ public class MovieService {
 	}
 	
 	@Transactional
+	public Movie setTitleToMovie(Long movieId,String newTitle) {
+		Movie res = null;
+		Movie movie = this.findMovieById(movieId);
+		if(movie != null) {
+			res = movie;
+		movie.setTitle(newTitle);
+		this.saveMovie(movie);
+		}
+		return res;
+		
+	}
+	public Movie setAnnoToMovie(Long movieId, int year) {
+		Movie res = null;
+		Movie movie = this.findMovieById(movieId);
+		if(movie != null) {
+			res = movie;
+		movie.setYear(year);
+		this.saveMovie(movie);
+		}
+		return res;
+		
+	}
+	
+	
+	
+	@Transactional
 	public List<Movie> findByYear(Integer year) {
 		return this.movieRepository.findByYear(year);
 	}
@@ -127,4 +153,34 @@ public class MovieService {
 		return movies;
 	}		
 
+	
+	
+	public void removeActorsFromMovie(Long idMovie) {
+		Movie movie=this.movieRepository.findById(idMovie).get();
+		movie.setActors(null);
+		this.movieRepository.save(movie);
+	}
+	
+	public void delete(Long idMovie) {
+		Movie movie= this.movieRepository.findById(idMovie).get();
+		this.movieRepository.delete(movie);
+	}
+	
+	
+	@Transactional 
+	public void removeArtistFromAllMovies(Long idactor) {
+		Artist artist= this.artistRepository.findById(idactor).get();
+		Set<Movie> starredMovies = artist.getStarredMovies() ;
+		List<Movie> directedMovies=this.movieRepository.findAllByDirector(artist.getId());
+		for(Movie movie :starredMovies) {
+			movie.getActors().remove(artist);
+			this.movieRepository.save(movie);
+		}
+		for(Movie movie :directedMovies) {
+			movie.setDirector(null);
+			this.movieRepository.save(movie);
+		}
+	}
+
+	
 }

@@ -22,4 +22,50 @@ public class FileUploadUtil {
             throw new IOException("Could not save image file: " + fileName, ioe);
         }      
     }
+    
+    
+    public static void deleteDir(String title) {
+    	String dir = "src/main/resources/static/images/";
+    	
+    	String name = dir +  title;
+        Path path = Paths.get(name);
+        File file = new File(name);
+        File[] contents = file.listFiles();
+        if (contents != null) {
+            for (File f : contents) {
+                f.delete();
+            }
+        }
+        
+        try {
+			Files.delete(path);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+        
+    }
+    
+    public static void deleteDirArt(String title) {
+    	String dir = "src/main/resources/static/images/artists/";
+    	
+    	String name = dir +  title;
+        Path path = Paths.get(name);
+        File file = new File(name);
+        File[] contents = file.listFiles();
+        if (contents != null) {
+            for (File f : contents) {
+                f.delete();
+            }
+        }
+        
+        try {
+			Files.delete(path);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+        
+    }
+    
 }
