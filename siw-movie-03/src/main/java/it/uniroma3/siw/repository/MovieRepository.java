@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
-import it.uniroma3.siw.model.Artist;
 import it.uniroma3.siw.model.Movie;
 
 public interface MovieRepository extends CrudRepository<Movie, Long> {

@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Built-By: gianluca
-Build-Jdk: 17.0.6
+Build-Jdk: 17.0.7
 Implementation-Title: siw-spring-03
 Implementation-Version: 0.0.1-SNAPSHOT
 Implementation-Vendor-Id: it.uniroma3.siw
