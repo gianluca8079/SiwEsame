@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	
+	<link rel="stylesheet" href="/css/stile.css" />
+</head>
+
+<body>
+	<header>
+		<div th:if="${#request.userPrincipal}">
+			<span th:text="${#request.userPrincipal.principal.username}"></span>
+			<a href="/logout">Logout</a>
+		</div>
+		<div th:unless="${#request.userPrincipal}">
+			<a href="/login">Login</a>
+		</div>
+	</header>
+
+	<span class="Logo"><span class="link"><a href="/"><img src="/images/logo-siw.png" width="100%"/></a></span></span>
+	<h1>Aggiorna artista</h1>
+	
+	<div class="riquadro4">
+		<div class="input4">
+		<div th:if="${artist}">
+		<div>
+			<span th:text="${artist.name} + ' ' + ${artist.surname}">Dino Risi</span>
+		</div>
+		
+		<form th:action="@{'/admin/modificaNome/' + ${artist.id}}" method="post">
+		<span>Nuovo nome: <input type="text" th:value="${name}" name="name" /></span>
+		<span><input type="submit" /></span>
+		</span>
+	</form>
+	
+<form th:action="@{'/admin/modificaCognome/' + ${artist.id}}" method="post">
+		<span>Nuovo cognome: <input type="text" th:value="${surname}" name="surname" /></span>
+		<span><input type="submit" /></span>
+		</span>
+	</form>
+		
+		
+		<div th:unless="${artist}">Artista non esistente</div>
+		<div>
+		<a th:href="@{'/admin/manageArtists/'}"><button type="button">Fine</button></a>
+	</div>
+	</div>
+	
+	</div>
+	
+</body>
+
+</html>

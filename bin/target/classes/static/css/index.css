@@ -1,0 +1,79 @@
+body { 
+    font-family: "Geneva";
+    color: rgb(98, 192, 144);
+    background-color: black;
+    display: flex;
+  flex-direction: column;
+
+}
+html, body {
+  height: 100%;
+}
+
+.boxes{
+	display:flex;
+	justify-content: space-between;
+	width: 60%;
+	padding-left: 20%;
+	align-items: center;
+	padding-top: 10%;
+	
+}
+
+h1{
+	display: flex;
+	justify-content: center;
+	text-decoration: none;
+}
+
+a { 
+    color: rgb(98, 192, 144);
+    text-decoration: none;
+    font-size: large;
+    
+}
+
+
+.immagine{
+	 height:300px;
+	 width: 300px;
+}
+.indexMovie{
+	    text-decoration: underline;
+
+	
+}
+
+a:hover { 
+	text-decoration: underline; 
+}
+header {
+  background-color: rgb(98, 192, 144);
+  color: white;
+  height: 1.5em;
+  margin-bottom: 0.5em;
+  padding: 0.2em;
+  text-align: right; 
+}
+
+header a { 
+	text-decoration: none; 
+    color: white;
+    font-size: 0.6em;
+}
+
+.footer {
+  flex: 1 0 auto;
+}
+
+footer {
+	  flex-shrink: 0;
+	  background-color: rgb(98, 192, 144);
+	  height: 1.5em;
+
+
+}
+
+
+
+
