@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Artista</title>
+	<link rel="stylesheet" href="/css/artist.css" />
+</head>
+
+<body>
+	<header>
+		<div th:if="${#request.userPrincipal}">
+			<span th:text="${#request.userPrincipal.principal.username}"></span>
+			<a href="/logout">Logout</a>
+		</div>
+		<div th:unless="${#request.userPrincipal}">
+			<a href="/login">Login</a>
+		</div>
+	</header>
+	
+
+	<span class="Logo"><span class="link"><a href="/"><img src="/images/logo-siw.png" width="100%"/></a></span></span>
+	
+    <span class="Titolo" th:text="${artist.name} + ' ' + ${artist.surname}">Dino Risi</span>
+    
+
+    <div class="Bio" th:if="${artist}">
+		  <img class="mySlides" th:src="@{'/images/artists/' + ${artist.surname} + '/' + ${artist.immagine}}" width="100%"/>
+		  <div class="colonnaDestra">
+			  <div class="date">
+        <div th:text="'Data di nascita: ' + ${artist.dateOfBirth.getDayOfMonth()}
+        + '/' + ${artist.dateOfBirth.getMonthValue()} + '/' + ${artist.dateOfBirth.getYear()} ">01/01/2000</div>
+        <div th:if="${artist.dateOfDeath}">
+        <div th:text="'Data di morte: ' + ${artist.dateOfDeath.getDayOfMonth()}
+        + '/' + ${artist.dateOfDeath.getMonthValue()} + '/' + ${artist.dateOfDeath.getYear()} ">01/01/2000</div>    
+        </div>  
+        </div> 
+    <div th:unless="${artist}">Non esiste</div>
+    
+      
+
+    <span class="sottotitolo">L'artista ha diretto:</span>
+    
+    <ul>
+		<li th:each="movie : ${directedMovies}">
+			<a th:href="@{'/movie' + '/' + ${movie.id}}"
+				th:text="${movie.title}">Titanic</a>
+		</li>
+	</ul>
+	
+	    <span class="sottotitolo">L'artista ha recitato in:</span>
+
+	
+	<ul>
+		<li th:each="movie : ${starredMovies}">
+			<a th:href="@{'/movie' + '/' + ${movie.id}}"
+				th:text="${movie.title}">Titanic</a>
+		</li>
+	</ul>
+    
+    </div>
+  </body>
+</html>
