@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Roster</title>
+	<link rel="stylesheet" href="/css/stile.css" />
+</head>
+
+<body>
+
+	
+	<h1>Roster</h1>
+	<div th:if="${roster==null || roster.isEmpty()}">Non ci sono giocatori nel sistema</div>
+	<ul>
+		<li th:each="athlete : ${roster}">
+			<a th:href="@{'/athlete' + '/' + ${athlete.id}}"
+				th:text="${athlete.name} + ' ' + ${athlete.surname}"></a>
+		</li>
+	</ul>
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Calendario</title>
+	<link rel="stylesheet" href="/css/stile.css" />
+</head>
+
+<body>
+	<div><a href="/"><img src="/images/logo-siw.png" width="20%"/></a></div>
+
+	
+	<h1>Calendario</h1>
+	<div th:if="${calendario==null || calendario.isEmpty()}">Non ci sono partite nel sistema</div>
+	<ul>
+		<li th:each="partita : ${calendario}">
+			<a th:href="@{'/partita' + '/' + ${partita.id}}"
+				th:text="'RomaEur' + ' ' + ${partita.getPunteggioA()} + '-' + ${partita.getPunteggioB()} + ' ' + ${partita.getNomeSquadraAvversaria()} ">Roma eur:0 </a>
+		</li>
+	</ul>
+	
+	
+	
+	<div>
+		<a href="/formNuovaPartita">Inserisci nuova partita</a>
+	</div>
+</body>
+
+</html>

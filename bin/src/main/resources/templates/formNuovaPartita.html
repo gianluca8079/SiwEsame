@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>
+		Nuova Partita
+	</title>
+	<link rel="stylesheet" href="/css/stile.css" />
+</head>
+
+<body>
+	
+	<h1>Aggiungi una partita</h1>
+	<form th:action="@{/partita}" method="POST" th:object="${partita}">
+  		
+		
+		<div>
+			<label>Nome squadra avversaria:</label> 
+			<span><input type="text" th:field="${partita.nomeSquadraAvversaria}" /></span>
+		    </span>
+		</div>
+
+		<div>
+			<label>Punteggio Roma Eur:</label> <span><input type="text" th:field="${partita.punteggioA}" /></span>
+		    </span>
+		</div>
+		
+		<div>
+			<label>Punteggio squadra avversaria:</label> <span><input type="text" th:field="${partita.punteggioB}" /></span>
+		    </span>
+		</div>
+		
+		<div>
+			<label>Data:</label> <span><input type="date" th:field="${partita.data}" /></span>
+		    </span>
+		</div>
+
+		
+		
+		<div>
+			<span><button type="submit">Conferma</button></span>
+		</div>
+	</form>
+</body>
+
+</html>
