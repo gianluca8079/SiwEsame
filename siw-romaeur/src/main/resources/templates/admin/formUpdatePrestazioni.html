@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<head>
+	<title>
+		Aggiungi artista
+	</title>
+	<link rel="stylesheet" href="/css/stileRomaEur1.css" />
+</head>
+<body>
+	<div class="schermo-vertical">
+		<div class="header">
+			<div class="text" th:if="${userDetails}">
+				<span th:text="${userDetails.username}" class="username"></span>
+				<a href="/logout">Logout</a>
+			</div>
+			<div class="text" th:unless="${userDetails}">
+				<a href="/login">Login</a>
+			</div>
+		</div>
+		
+		<div class="section">
+			<div class="flexbox-container-horizontal-sb">
+				
+				
+				<div class="flexbox-container-vertical-adapt">
+					<div class="flex-item-box">
+						<div class="flexbox-container-vertical">
+							<div class="flex-item-slice">
+								<div class="riempiTutto-center">
+									<span th:text="${partita.data}"></span>
+								</div>
+							</div>
+							<div class="flex-item-slice">
+								<div class="flex-item-slice-unTerzo">
+									<img src="/images/logoRomaEur.png" width="100%">
+								</div>
+								<div class="flex-item-slice-dueTerzi">
+									<a th:href="@{'/partita' + '/' + ${partita.id}}"
+										th:text="'RomaEur' + ' ' + ${partita.getPunteggioA()}">Roma eur:0 
+									</a>
+								</div>
+							</div>
+							<div class="flex-item-slice">
+								<div class="flex-item-slice-unTerzo">
+									<img th:src="@{'data:image;base64,' + ${partita.getStemmaSquadraString}}" width="100%">
+								</div>
+								<div class="flex-item-slice-dueTerzi">
+									<a th:href="@{'/partita' + '/' + ${partita.id}}"
+										th:text="${partita.getNomeSquadraAvversaria()} + ' ' + ${partita.getPunteggioB()}">Roma eur:0 
+									</a>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+					<form th:action="@{'/partita/' + ${partita.id}}" method="GET" >
+						 <div>
+							<span><button class="button-grey" type="submit">fine</button></span>
+						</div>
+					</form>
+				</div>
+			    <div th:unless="${partita}">Non esiste la partita</div>
+			    
+				<div class="flexbox-vertical-scrollable">
+					<h4>Giocatori che puoi aggiungere: </h4>
+					<ul>
+						<li th:each="giocatoreAssente : ${giocatoriAssenti}">
+							<div>
+								<span th:text="${giocatoreAssente.nome} + ' ' + ${giocatoreAssente.cognome}"></span>
+								<a th:href="@{'/admin/formNuovaPrestazione'+'/'+${partita.id}+'/'+${giocatoreAssente.id}}">-aggiungi</a>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div class="flexbox-vertical-scrollable">
+					<h4>Giocatori presenti alla partita: </h4>
+			    	<ul>
+						<li th:each="prestazione : ${prestazioni}">
+							<div>
+								<span th:text="${prestazione.giocatore.nome} + ' ' + ${prestazione.giocatore.cognome}"></span>
+								<a th:href="@{'/admin/formConfirmDeletePrestazione'+'/'+${prestazione.id}}">-cancella</a>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="footer"></div>
+  </body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>
+		Giocatore errore
+	</title>
+	<link rel="stylesheet" href="/css/stileRomaEur1.css" />
+</head>
+
+<body>
+	<div class="schermo-vertical">
+		<div class="header">
+			<div class="text" th:if="${userDetails}">
+				<span th:text="${userDetails.username}" class="username"></span>
+				<a href="/logout">Logout</a>
+			</div>
+			<div class="text" th:unless="${userDetails}">
+				<a href="/login">Login</a>
+			</div>
+		</div>
+		
+		<div class="section">
+			<div class="flexbox-container-horizontal-c">
+				<div class="textCentered">
+					<h1>GIOCATORE NON TROVATO</h1>
+				</div>
+			</div>
+		</div>
+		<div class="imgAbsolute">
+			<a href="/"><img src="/images/home.png" width="40%"/></a>
+		</div>
+		<div class="footer"></div>
+	</div>
+</body>
+
+</html>

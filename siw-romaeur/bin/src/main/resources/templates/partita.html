@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Partita</title>
+	<link rel="stylesheet" href="/css/stile.css" />
+</head>
+
+<body>
+	
+	<div><a href="/"><img src="/images/logo-siw.png" width="20%"/></a></div>
+
+    <h1>Dettagli Partita</h1>
+    
+    <div th:if="${partita}">
+		        <span th:text="'Roma Eur: ' + ${partita.getPunteggioA()} + '-' + ${partita.getPunteggioB()} + ' ' + ${partita.getNomeSquadraAvversaria()}">Roma Eur: punteggio</span>
+		        <span th:text="${partita.getData()}"></span>
+
+    </div>
+    <div th:unless="${partita}">Non esiste</div>
+    
+    
+    	<div><a href="/calendario"><button>Calendario</button></a></div>
+
+  </body>
+</html>

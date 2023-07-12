@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>
+		RomaEur - Homepage
+	</title>
+	<link rel="stylesheet" href="/css/stileRomaEur1.css" />
+</head>
+
+<body>
+	<header>
+		<div th:if="${userDetails}">
+			<span th:text="${userDetails.username}" class="username"></span>
+			<a href="/logout">Logout</a>
+		</div>
+		<div th:unless="${userDetails}">
+			<a href="/login">Login</a>
+		</div>
+	</header>
+	<div><img src="/images/logo-Roma-Eur.png" width="5%"/></a></div>
+	<h1>Consulta l'archivio ADMIN</h1>
+	<div>
+		<a href="/roster">Roster</a>
+	</div>
+	<div>
+		<a href="/calendario">Calendario</a>
+	</div>
+	
+	<a th:if="${credenziali!=null && credenziali.isAdmin()}">
+			<a th:href="@{/admin/formNewGiocatore}">Aggiungi giocatore</a>
+		</a>
+		
+		<div th:if="${credenziali!=null && credenziali.isAdmin()}" class="flex-item-box">
+							<div class="flex-item-unTerzoH">
+								Inserisci una nuova partita
+							</div>
+							<div class="flex-item-DueTerziH">
+								<a href="/admin/formNuovaPartita"><img src="/images/plus.png" width="50%"></a>
+							</div>
+						</div>
+	
+	<footer></footer>
+</body>
+
+</html>
