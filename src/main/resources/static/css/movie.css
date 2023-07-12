@@ -1,0 +1,160 @@
+body { 
+    font-family: "Geneva";
+    color: rgb(98, 192, 144);
+    background-color: black;
+    margin:0;
+    height: 100vh;  
+}
+
+.Logo{
+	display: flex;
+	justify-content: flex-end;
+}
+.link{
+	width: 435.59px;
+}
+
+.mySlides {
+	display:none;
+    width:  300px;
+    height: 300px;
+    object-fit:scale-down;
+
+}
+
+ul{
+	list-style-type: none ;
+	width: 200px;
+}
+
+.immagini{
+	list-style-type: none;
+	display: flex;
+	margin-left: 400px;
+	width: 50%;
+}
+
+
+
+
+
+li{
+	list-style-type: none ;
+}
+
+a { 
+	color: rgb(98, 192, 144);
+    text-decoration: none;
+    font-size: large;
+}
+
+a:hover { 
+	text-decoration: underline; 
+}
+
+.Titolo{
+	font-size: 350%;
+	position:relative;
+	margin-left: 150px; 
+	text-decoration: none;
+	margin-top: 0px;
+	margin-bottom: 50px;
+}
+.data{
+	position:relative; 
+	margin-top: 0%;
+}
+
+.movie{
+	width: 800px;
+}
+
+
+
+.Cast{
+	margin-left: 100px;
+	margin-top: 150px;
+		font-size: 150%;
+		color: white;
+
+	
+}
+
+.midSection{
+	display:flex;
+}
+
+
+.titoloRecensioni{
+	display: flex;
+	justify-content: center;
+	font-size: 250%;
+	text-decoration: none;
+	margin-top: 100px;
+	margin-bottom: 50px;
+	height: 100px;
+}
+
+.recensioni {
+	display: flex;
+		
+}
+
+.title{
+	color: white;
+}
+
+.utente{
+	color:orange;
+}
+.valutazione{
+	color: gold
+}
+
+.cancella{
+	color: red;
+}
+
+.button{
+	margin-bottom: 5px;
+	position: absolute;
+	margin-left: 10px;
+	margin-bottom: 20px;
+
+
+}
+
+.checked{
+	color: gold;	
+}
+
+.container{
+	width: 200px;
+}
+
+.end{
+	height: 100px;
+}
+
+
+
+
+header {
+  background-color: rgb(98, 192, 144);
+  color: white;
+  height: 1.5em;
+    width: 100%;
+  text-align: right; 
+margin-bottom: 0.5em;
+}
+
+header a { 
+	text-decoration: none; 
+    color: white;
+    font-size: 0.6em;
+}
+
+
+
+
+
