@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>
+		SiwMovie - Login
+	</title>
+	<link rel="stylesheet" href="/css/stileRomaEur1.css" />
+</head>
+
+<body>
+	
+
+	<div>
+		<a href="/"><img src="/images/Logo-Roma-Eur.png" width="10%"/></a>
+	</div>
+	<h1>Login</h1>
+	<form th:action="@{/login}" method="POST">
+			<div>
+				<span>Username:</span>
+				<span><input name="username" type="text" required /></span>
+			</div>
+			<div>
+				<span>Password:</span>
+				<span><input name="password" type="password" required /></span>
+			</div>
+			<div>
+				<span th:if="${param.error != null}">Username o password errati</span>
+			</div>
+			<div>
+				<span><button type="submit">Login</button></span>
+			</div>
+	</form>
+	<div>
+		<a th:href="@{/register}" th:text="Registrati">Registrati</a>
+	</div>
+	<footer></footer>
+</body>
+
+</html>

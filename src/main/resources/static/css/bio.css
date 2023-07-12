@@ -1,0 +1,127 @@
+body { 
+    font-family: Arial, Helvetica;
+    margin: 0;
+    color: black;
+}
+
+
+
+a { 
+	text-decoration: none; 
+    color: black;
+}
+p{
+	color: white;
+}
+
+.scritta{
+position: absolute;
+  text-align: center;
+  color: white;
+left: 680px; 
+top:180px;
+text-decoration: solid;
+font-size: 40px;
+}	
+
+.maglietta{
+	position: absolute;
+	left:600px;
+	top:100px;
+}
+
+
+a:hover { 
+	text-decoration: underline; 
+}
+
+
+header {
+    background-color: red;
+    color: black;
+    height: 30px;
+    width: 100%;
+    color: black;
+text-align: right;
+justify-content: end;
+font-size: 1em;
+
+  
+  
+}
+
+
+
+
+footer{
+	background-color: red;
+	color: white;
+  	height: 20px;
+  	width: 100%;
+  	position: fixed;
+  	left: 0;
+  	bottom: 0;
+}
+
+
+.sidebar {
+width: 150px;
+position: absolute;
+left: 0;
+background-color: white;
+}
+
+.sidebar div {
+font-size: 24px;
+}
+
+h2{
+	display: flex;
+	justify-content: center;
+}
+
+.tabellino{
+	display: flex;
+	justify-content: center;
+	}
+
+.riquadro{
+	background-color: white;
+	height: 500px;
+	width: 100%;
+}
+
+table,tr,th,td{
+	margin-left: 100px;
+	border: 2px solid;
+	width:700px;
+	border-color: black;
+}
+ul{
+	list-style-type: none ;
+}
+li{
+	list-style-type: none;
+}
+
+
+.bio{
+	display:flex;
+	height: 400px;
+	margin-left: 150px;
+    font-size: 18px;
+}
+
+.bioPic{
+	display: flex;
+	flex-grow: 1;
+	justify-content: center;
+	color: red;
+}
+
+.bioInfo{
+	display: flex;
+	flex-direction: column;
+	width: 500px;
+	flex-grow: 1;
+	}

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>
+		Nuova Partita
+	</title>
+	<link rel="stylesheet" href="/css/stileRomaEur1.css" />
+</head>
+
+<body>
+	<div class="schermo-vertical">
+		<div class="header">
+			<div class="text" th:if="${userDetails}">
+				<span th:text="${userDetails.username}" class="username"></span>
+				<a href="/logout">Logout</a>
+			</div>
+			<div class="text" th:unless="${userDetails}">
+				<a href="/login">Login</a>
+			</div>
+		</div>
+		
+		<div class="section">
+			<div class="flexbox-container-horizontal-c">
+				<div class="flex-item-formNew">
+					<h1>Aggiungi una partita</h1>
+					<form th:action="@{/admin/partita}" method="POST" th:object="${partita}" enctype="multipart/form-data">
+				  		<div th:if="${#fields.hasGlobalErrors()}">
+							<p th:each="err : ${#fields.globalErrors()}" th:text="${err}"></p>
+						</div>
+						
+						<div>
+							<label>Nome squadra avversaria:</label> 
+							<span><input type="text" th:field="${partita.nomeSquadraAvversaria}" /></span>
+						    <span th:if="${#fields.hasErrors('nomeSquadraAvversaria')}" th:errors="*{nomeSquadraAvversaria}"></span>
+						</div>
+				
+						<div>
+							<label>Punteggio Roma Eur:</label> 
+							<span><input type="text" th:field="${partita.punteggioA}" /></span>
+						    <span th:if="${#fields.hasErrors('punteggioA')}" th:errors="*{punteggioA}"></span>
+						</div>
+						
+						<div>
+							<label>Punteggio squadra avversaria:</label> 
+							<span><input type="text" th:field="${partita.punteggioB}" /></span>
+						    <span th:if="${#fields.hasErrors('punteggioB')}" th:errors="*{punteggioB}"></span>
+						</div>
+						
+						<div>
+							<label>Data:</label> 
+							<span><input type="date" th:field="${partita.data}" /></span>
+						    <span th:if="${#fields.hasErrors('data')}" th:errors="*{data}"></span>
+						</div>
+						<div>
+				        	<input type="file" th:name="image" accept="/image*" onchange="loadFile(event)">
+				        </div>
+				        <p><img id="output" width="50"/></p>
+					      <script>
+					          var loadFile = function(event) {
+					              var image = document.getElementById('output');
+					              image.src=URL.createObjectURL(event.target.files[0]);
+					          };
+					      </script>
+						<div>
+							<span><button class="button-green" type="submit">Conferma</button></span>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="imgAbsolute">
+			<a href="/calendario"><img src="/images/back.png" width="40%"/></a>
+		</div>
+		<div class="footer"></div>
+	</div>
+</body>
+
+</html>

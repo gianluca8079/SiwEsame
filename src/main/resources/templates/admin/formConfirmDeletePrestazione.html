@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>
+		Form confirm to delete film
+	</title>
+	<link rel="stylesheet" href="/css/stileRomaEur1.css" />
+</head>
+
+<body>
+	<div class="schermo-vertical">
+		<div class="header">
+			<div class="text" th:if="${userDetails}">
+				<span th:text="${userDetails.username}" class="username"></span>
+				<a href="/logout">Logout</a>
+			</div>
+			<div class="text" th:unless="${userDetails}">
+				<a href="/login">Login</a>
+			</div>
+		</div>
+		
+		<div class="section">
+			<div class="flexbox-container-horizontal-c">
+				<div class="flex-container-item-vertical">
+					<div class="textCentered">
+						<div th:text="' RomaEur ('
+						 + ${prestazione.partita.getPunteggioA()} + ' - ' + ${prestazione.partita.getPunteggioB()}
+						 + ') '+${prestazione.partita.nomeSquadraAvversaria} "></div>
+						<span>Sicuro di voler cancellare la prestazione: </span>
+					</div>
+					<div class="spazio"></div>
+					<div class = "tabellino">
+						<table>
+							<tr>
+								<th>Giocatore</th>
+								<th>Punti</th>
+							    <th>Assist</th>
+							    <th>Rimbalzi</th>
+							    <th>Rubate</th>
+							    <th>Stoppate</th>
+							</tr>
+							<tr>
+								 <td th:text="${prestazione.giocatore.nome} + ' ' + ${prestazione.giocatore.cognome}"></td>
+								 <td th:text="${prestazione.punti}"></td>
+						         <td th:text="${prestazione.assist}"></td>   
+						         <td th:text="${prestazione.rimbalzi}"></td>
+						         <td th:text="${prestazione.rubate}"></td>
+						         <td th:text="${prestazione.stoppate}"></td>
+			 				</tr>
+		 				</table>
+					</div>
+					
+					<div class="spazio"></div>
+					
+					<div class="simpleContainer">
+						<form th:action="@{'/admin/deletePrestazione/' + ${prestazione.id}}" method="GET" >
+							 <div>
+								<span><button class="button-red2" type="submit">elimina</button></span>
+							</div>
+						</form>
+						<form th:action="@{'/admin/formUpdatePartita/' + ${partita.id}}" method="GET" >
+							 <div>
+								<span><button class="button-green" type="submit">annulla</button></span>
+							</div>
+						</form>
+				    </div>
+					
+				</div>
+			</div>
+		</div>
+		
+		<div class="footer"></div>
+	</div>
+</body>
+
+</html>
