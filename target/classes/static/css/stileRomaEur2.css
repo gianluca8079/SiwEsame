@@ -1,0 +1,246 @@
+body { 
+    font-family: Arial, Helvetica; 
+    margin: 0;
+	padding: 0;
+    color: black;
+    border:0;
+    box-sizing: border-box;
+}
+
+a { 
+	text-decoration: none; 
+    color: black;
+}
+
+a:hover { 
+	
+	text-decoration: underline; 
+}
+
+li{
+	list-style-type: none;
+}
+.tabellino{
+	display: flex;
+	justify-content: center;
+}
+table,tr,th,td{
+	border: 2px solid;
+	width:700px;
+	border-color: black;
+}
+
+.schermo-vertical{
+	height: 100vh;
+	width: 100vw;
+	display: flex;
+	flex-direction: column;
+}
+
+.header{
+	min-height: 10%;
+	background-color: red;
+	display: flex;
+ 	align-items: center;
+ 	justify-content: flex-end;
+ 	border: 3px black;
+ 	background-image: url('/images/logoRomaEur.png');
+ 	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 60px;
+}
+.header a{
+	color: grey;
+}
+.header .text {
+  text-align: right;
+  font-size: 24px;
+  margin-right: 30px;
+}
+.header .text a{
+	color: whitesmoke;
+}
+.section{
+	min-height: 84%;
+	max-height: 84%;
+	background-color:  rgb(249, 100, 78);
+	justify-content: center;
+}
+
+.footer{
+	min-height: 6%;
+	max-height: 6%;
+	display: flex;
+	background-color: red;
+}
+.container-horizontal{
+	flex-direction: row;
+	font-size: 1.2em;
+}
+.flexbox-container-horizontal{
+	height: 100%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+}
+.flexbox-container-horizontal-halfHigh{
+	height: 50%;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+}
+.flexbox-container-horizontal-start{
+	height: 100%;
+	display: flex;
+	flex-direction: row;
+	align-items: start;
+	justify-content: start;
+}
+.flexbox-container-horizontal-100h{
+	margin-top: 20px;
+	height: 100px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+}
+.flexbox-container-vertical{
+	height: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+.flexbox-container-vertical-centered{
+	height: 100%;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+.flexbox-container-vertical-40w{
+	height: 100%;
+	width: 40%;
+	display: flex;
+	flex-direction: column;
+}
+.maglia-container-vertical-40w{
+	height: 100%;
+	width: 60%;
+	display: flex;
+	flex-direction: column;
+ 	background-image: url('/images/CanottaRossa.png');
+ 	background-position: start;
+ 	background-position-x: left;
+	background-repeat: no-repeat;
+	background-size: 20%;
+}
+.numeroMaglia{
+	margin-top: 50px;
+	margin-left: 38px;
+	font-size: 2em;
+}
+.numeroMaglia span{
+	color: aliceblue;
+}
+.flexbox-container-vertical-20w{
+	height: 100%;
+	width: 20%;
+	justify-content: center;
+	display: flex;
+	flex-direction: column;
+}
+.flex-item-1{
+	width: 33%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	align-items: center;
+}
+.flex-item-1 img{ 
+ 	max-width: 98%; 
+  	max-height: 98%; 
+	border: 4px solid black;
+	border-radius: 10px;
+}
+.flex-item-2{
+	height: 100%;
+	width: 67%;
+	flex-direction: column;
+}
+.flexbox-container-vertical-100vh-100pxh{
+	height: 100%-100px;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.textCentered{
+	display: flex;
+	padding: 10px;
+	align-items: center;
+	text-align: center;
+	font-size: 2em;
+}
+.box100{
+	height: 100px;
+	width: 100px;
+	justify-content: center;
+	text-align: center;	
+	align-items: center;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+.box100 img{
+	height: 80%;
+	width: 90%;
+}
+
+.button1 {
+	width: 200px;
+	height: 40px;
+ 	display: inline-block;
+  	background-color: lightgrey;
+  	color: black;
+ 	text-align: center;
+ 	border: 4px double whitesmoke;
+ 	border-radius: 10px;
+	font-size: 14px;
+ 	cursor: pointer;
+  	margin: 5px;
+  	font-size: 1em;
+}
+
+.imgAbsolute{
+	position: absolute;
+	left: 1200px;
+	bottom: 100px;
+}
+
+.maglia{
+	width: 100%;
+	height: 100%;
+	align-items: center;
+	justify-content: center;
+ 	background-image: url('/images/CanottaRossa.png');
+ 	background-position: 90px;
+	background-repeat: no-repeat;
+	background-size: 30%;
+	background-color: green;
+}
+.b{
+	background-color: blue;
+}
+
+.testoCentrato{
+	justify-content: center;
+	padding: 10px;
+	align-items: center;
+	text-align: center;
+	font-size: 2em;
+}

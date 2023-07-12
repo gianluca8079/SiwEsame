@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Calendario</title>
+	<link rel="stylesheet" href="/css/stileRomaEur1.css" />
+</head>
+
+<body>
+	<div class="schermo-vertical">
+		<div class="header">
+			<div class="text" th:if="${userDetails}">
+				<span th:text="${userDetails.username}" class="username"></span>
+				<a href="/logout">Logout</a>
+			</div>
+			<div class="text" th:unless="${userDetails}">
+				<a href="/login">Login</a>
+			</div>
+		</div>
+		
+		<div class="section">
+			<div class="flexbox-container-vertical">
+				<div class="textCentered"><h1>Calendario</h1></div>
+				<div class="flexbox-container-horizontal-c">
+					<div class="flexbox-container-horizontal-scrollable">
+						
+						<div th:if="${calendario==null || calendario.isEmpty()}">Non ci sono partite nel sistema</div>
+						<div th:if="${credenziali!=null && credenziali.isAdmin()}" class="flex-item-box">
+							<div class="flex-item-unTerzoH">
+								Inserisci una nuova partita
+							</div>
+							<div class="flex-item-DueTerziH">
+								<a href="/admin/formNuovaPartita"><img src="/images/plus.png" width="50%"></a>
+							</div>
+						</div>
+						<li th:each="partita : ${calendario}">
+							<div class="flex-item-box">
+								<div class="flexbox-container-vertical">
+									<div class="flex-item-slice">
+										<div class="riempiTutto-center">
+											<span th:text="${partita.data.getDayOfMonth()} + '/' + ${partita.data.getMonthValue()} + '/' + ${partita.data.getYear()}"></span>
+										</div>
+									</div>
+									<div class="flex-item-slice">
+										<div class="flex-item-slice-unTerzo">
+											<img src="/images/logoRomaEur.png" width="100%">
+										</div>
+										<div class="flex-item-slice-dueTerzi">
+											<a th:href="@{'/partita' + '/' + ${partita.id}}"
+												th:text="'RomaEur' + ' ' + ${partita.getPunteggioA()}">Roma eur:0 
+											</a>
+										</div>
+									</div>
+									<div class="flex-item-slice">
+										<div class="flex-item-slice-unTerzo">
+											<img th:src="@{'data:image;base64,' + ${partita.getStemmaSquadraString}}" width="100%">
+										</div>
+										<div class="flex-item-slice-dueTerzi">
+											<a th:href="@{'/partita' + '/' + ${partita.id}}"
+												th:text="${partita.getNomeSquadraAvversaria()} + ' ' + ${partita.getPunteggioB()}">Roma eur:0 
+											</a>
+										</div>
+									</div>
+									
+								</div>
+							</div>
+							<div class="simpleContainer-elementsCentered">
+							<form th:if="${credenziali!=null && credenziali.isAdmin()}" 
+									th:action="@{'/admin/formConfirmDeletePartita/' + ${partita.id}}" method="GET">
+								 <div class="textCentered">
+									<span><button class="button-red" type="submit">elimina</button></span>
+								</div>
+							</form>
+							</div>
+						</li>
+					</div>
+				</div>
+				<div class="simpleContainer-elementsEnd">
+					<a href="/"><img src="/images/home.png" width="3%"/></a>
+				</div>
+			</div>
+			
+			
+		</div>
+		<div class="footer"></div>
+	</div>
+</body>
+
+</html>

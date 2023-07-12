@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Roster</title>
+	<link rel="stylesheet" href="/css/roster.css" />
+</head>
+
+<body>
+	
+	<div class="esterno">
+
+
+	<div class="header">
+			<div class="text" th:if="${userDetails}">
+				<span th:text="${userDetails.username}" class="username"></span>
+				<a href="/logout">Logout</a>
+			</div>
+			<div class="text" th:unless="${userDetails}">
+				<a href="/login">Login</a>
+			</div>
+		</div>
+		
+			<div class="left"></div>
+			<div class="center">
+	<h1>Roster</h1>
+	<div th:if="${roster==null || roster.isEmpty()}">Non ci sono giocatori nel sistema</div>
+	<ul>
+		<li th:each="giocatore : ${roster}">
+			<a th:href="@{'/giocatore' + '/' + ${giocatore.id}}"
+				th:text="${giocatore.nome} + ' ' + ${giocatore.cognome}">
+			</a>
+			<a th:if="${credenziali!=null && credenziali.isAdmin()}">
+				<a th:href="@{'/admin/formConfirmDeleteGiocatore/' + ${giocatore.id}}">elimina</a>
+				<a th:href="@{'/admin/formUpdateGiocatoreData/'+${giocatore.id}}"> / Modifica giocatore</a>
+			</a>
+		</li>
+	</ul>
+		<a th:if="${credenziali!=null && credenziali.isAdmin()}">
+			<a th:href="@{/admin/formNewGiocatore}">Aggiungi giocatore</a>
+		</a>
+			</div>
+			<div class="right"></div>
+
+
+	
+	</div>
+		<footer class="footer"></footer>
+
+	
+</body>
+
+</html>

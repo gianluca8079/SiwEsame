@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Giocatore</title>
+    <link rel="stylesheet" href="/css/stileRomaEur2.css" />
+</head>
+
+<body>
+	<div class="schermo-vertical">
+		<div class="header">
+			<div class="text" th:if="${userDetails}">
+				<span th:text="${userDetails.username}" class="username"></span>
+				<a href="/logout">Logout</a>
+			</div>
+			<div class="text" th:unless="${userDetails}">
+				<a href="/login">Login</a>
+			</div>
+		</div>
+		
+		<div class="section">
+			<div class="flexbox-container-horizontal">
+				
+				<div class="flex-item-1">
+					<img th:src="@{'data:image;base64,' + ${giocatore.imageString}}">
+				</div>
+				
+				<div class="flex-item-2">
+					<div class="flexbox-container-horizontal-halfHigh">
+						
+						<div class="flexbox-container-vertical-40w">
+							<h1 th:text="${giocatore.nome} + ' ' + ${giocatore.cognome}"></h1>
+							<div class="container-horizontal">
+								<span>Nato il: </span>
+						    	<i th:text=" ${giocatore.dataDiNascita.getDayOfMonth()}
+								        + '/' + ${giocatore.dataDiNascita.getMonthValue()} + '/' + ${giocatore.dataDiNascita.getYear()} ">01/01/2000
+						    	</i>
+							</div>
+							<div class="container-horizontal">
+								<span>Ruolo: </span>
+						    	<i th:text="${giocatore.ruolo}">Centro</i>
+							</div>
+						</div>
+						<div class="maglia-container-vertical-40w">
+							<div class="numeroMaglia">
+								<span th:text="${giocatore.numeroMaglia}"></span>
+							</div>
+						</div>	
+						<div class="flexbox-container-vertical-20w">
+							<a href="/roster">
+								<img src="/images/back.png" width="20%">Roster
+							</a>
+						</div>		    
+					</div>
+					
+					<div class="flexbox-container-horizontal-halfHigh">
+						<div class="flexbox-container-vertical-centered">
+							<div class="textCentered">
+								<h2>Statistiche</h2>
+							</div>
+					
+							<div class = "tabellino">
+								<table>
+									<tr>
+										<th>Partite giocate</th>
+										<th>Punti</th>
+									    <th>Assist</th>
+									    <th>Rimbalzi</th>
+									    <th>Palle rubate</th>
+									    <th>Stoppate</th>
+									 </tr>
+									<tr>
+									 	<th th:text="${giocatore.getPartiteGiocate()}">2</th>
+									 	<th th:text="${giocatore.getMediaPunti()}">2</th>
+									 	<th th:text="${giocatore.getMediaAssist()}">2</th>
+									 	<th th:text="${giocatore.getMediaRimbalzi()}">2</th>
+									 	<th th:text="${giocatore.getMediaRubate()}">2</th>
+									 	<th th:text="${giocatore.getMediaStoppate()}">2</th>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	    <div class="footer"></div>
+		
+	</div>
+</body>
+</html>
