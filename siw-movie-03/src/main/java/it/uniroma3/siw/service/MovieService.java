@@ -34,6 +34,8 @@ public class MovieService {
 		return movieRepository.findByTitleAndYear(title, year);
 		
 	}
+	
+	
 
 	
 	public Movie findMovieById(Long id) {
@@ -180,6 +182,12 @@ public class MovieService {
 			movie.setDirector(null);
 			this.movieRepository.save(movie);
 		}
+	}
+
+	public boolean checkMovie(Movie movie, String title) {
+		if(this.movieRepository.existsByTitleAndYear(title, movie.getYear()))
+		return true;
+		return false;
 	}
 
 	

@@ -1,7 +1,10 @@
 package it.uniroma3.siw.controller;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.List;
+import java.nio.file.*;
 
 import javax.transaction.Transactional;
 import javax.validation.Valid;
@@ -12,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -118,18 +122,26 @@ public class MovieController {
 	@PostMapping(value="/admin/modificaTitolo/{movieId}")
 	public String modificaTitolo(@PathVariable("movieId") Long movieId,@RequestParam String title, Model model) {
 		Movie movie = this.movieService.findMovieById(movieId);
+		String oldTitle = movie.getTitle();
+		
 		
 		if(movie != null && title != null) {
+			if(this.movieService.checkMovie(movie,title)) 
+				return "movieError.html";
+
 			this.movieService.setTitleToMovie(movieId,title);
+			Path oldFolder = Paths.get("src/main/resources/static/images/" + oldTitle);
+			Path newFolder = Paths.get("src/main/resources/static/images/" + title);
+			try {
+				Files.move(oldFolder,newFolder);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
 			model.addAttribute("movie", movie);
 			return "admin/formUpdateMovie.html";
-
-
-		}
-		else {
-		return "movieError.html";
-		}
-		
+			}
+			else return "movieError.html";
 		
 	}
 	@PostMapping(value="/admin/modificaAnno/{movieId}")
